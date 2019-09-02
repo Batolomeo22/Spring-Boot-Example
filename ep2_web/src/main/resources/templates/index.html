@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<script th:inline="javascript">
+    var msg = [[${backval}]];
+    console.log(msg);
+
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>This is a html5 web page.</h1>
+    <p th:text="${backval}"></p>
+</body>
+</html>
