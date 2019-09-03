@@ -15,5 +15,75 @@ File->Settings->搜索File Encoding 修改为UTF-8
    - 实体类里需要指定id，不指定id也会报错。
    - 实体类字段为stuName,则数据库表字段为stu_name
    
-4.添加Jsp  
-   
+4. JSP页面   
+    - 先在pom.xml中添加下列依赖   
+    ```$xml
+   <!-- 添加servlet依赖模块 -->
+           <dependency>
+               <groupId>javax.servlet</groupId>
+               <artifactId>javax.servlet-api</artifactId>
+               <scope>provided</scope>
+           </dependency>
+           <!-- 添加jstl标签库依赖模块 -->
+           <dependency>
+               <groupId>javax.servlet</groupId>
+               <artifactId>jstl</artifactId>
+           </dependency>
+           <!--添加tomcat依赖模块.-->
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-tomcat</artifactId>
+               <scope>provided</scope>
+           </dependency>
+           <!-- 使用jsp引擎，springboot内置tomcat没有此依赖 -->
+           <dependency>
+               <groupId>org.apache.tomcat.embed</groupId>
+               <artifactId>tomcat-embed-jasper</artifactId>
+               <scope>provided</scope>
+           </dependency>
+       </dependencies>
+    ```
+    - application.properties中添加属性
+    ```properties
+    spring.mvc.view.prefix=/WEB-INF/
+    spring.mvc.view.view-name=jsp/*
+    spring.mvc.view.suffix=.jsp
+    spring.mvc.view.order=2
+    ```
+   - 添加viewResolver
+   ```java
+    @Configuration
+    public class JspResolver {
+    
+        @Value("${spring.mvc.view.prefix}")
+        private String prefix;
+    
+        @Value("${spring.mvc.view.view-name}")
+        private String viewname;
+    
+        @Value("${spring.mvc.view.suffix}")
+        private String suffix;
+    
+        @Value("${spring.mvc.view.order}")
+        private int order;
+    
+        @Bean
+        InternalResourceViewResolver jspViewResolver(){
+            final InternalResourceViewResolver  viewResolver = new InternalResourceViewResolver();
+            viewResolver.setPrefix(prefix);
+            viewResolver.setViewNames(viewname);
+            viewResolver.setSuffix(suffix);
+            viewResolver.setOrder(order);
+    
+            return viewResolver;
+        }
+    }
+   ```
+   - 在/src/main下添加目录webapp/WEB-INF/jsp,添加indexJsp.jsp页面
+   - 在controller中添加requestmapping
+   ```java
+    @RequestMapping("/indexJsp")
+    public String getJsp(){
+        return "jsp/indexJsp";
+    }
+   ```
