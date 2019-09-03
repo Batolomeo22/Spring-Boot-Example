@@ -1,6 +1,6 @@
-#EPISODE3 REDIS&SPRINGBOOT
+# EPISODE3 REDIS&SPRINGBOOT
     
-##如何使用
+## 如何使用
 1. pom.xml中添加redis依赖   
     ```
     <dependencies>
@@ -142,13 +142,13 @@
 
    ```
 
-##共享Session
+## 共享Session
 
-###Spring Session 官方说明
+### Spring Session 官方说明
 
 Spring Session 提供了一套创建和管理 Servlet HttpSession 的方案。Spring Session 提供了集群 Session（Clustered Sessions）功能，默认采用外置的 Redis 来存储 Session 数据，以此来解决 Session 共享的问题。  
 
-###如何使用
+### 如何使用
 1. 引入依赖
    ```properties
     <dependency>
@@ -156,4 +156,46 @@ Spring Session 提供了一套创建和管理 Servlet HttpSession 的方案。Sp
         <artifactId>spring-session-data-redis</artifactId>
     </dependency>
    ```
-2. 
+2. 添加配置类SessionConfig
+   ```java
+    package com.bravoz.ep3redis.config;
+    
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+    
+    
+    //TODO
+    // maxInactiveIntervalInSeconds:设置 Session 失效时间，使用 Redis Session 之后，
+    // 原 Spring Boot 的 server.session.timeout 属性不再生效。
+    @Configuration
+    @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 86400 * 30)
+    public class SessionConfig {
+    }
+
+   ```
+3. 测试  
+   - 添加测试方法获取session_id
+   ```java
+    @RestController
+    public class SessionController {
+    
+        @RequestMapping("/uid")
+        public String sessionTest(HttpSession session){
+            UUID uid = (UUID)session.getAttribute("uid");
+            if(uid == null){
+                uid = UUID.randomUUID();
+            }
+            session.setAttribute("uid",uid);
+            return session.getId();
+        }
+    }
+   ```   
+   - 在redis中查看保存的session信息
+   ```shell script
+    127.0.0.1:6379> keys *session*
+    1) "spring:session:sessions:expires:30c1236a-ebfe-4cf8-a63f-6bdb69712a0f"
+    2) "spring:session:expirations:1570087320000"
+    3) "spring:session:sessions:30c1236a-ebfe-4cf8-a63f-6bdb69712a0f"
+   ```
+
+### 以上
