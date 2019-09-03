@@ -1,4 +1,4 @@
-#Session
+# Session
 
 sessionid是一个会话的key，浏览器第一次访问服务器会在服务器端生成一个session，有一个sessionid和它对应。tomcat生成的sessionid叫做jsessionid。
 
