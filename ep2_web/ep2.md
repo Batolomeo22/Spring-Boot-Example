@@ -19,6 +19,7 @@ File->Settings->搜索File Encoding 修改为UTF-8
     - 先在pom.xml中添加下列依赖   
     ```$xml
    <!-- 添加servlet依赖模块 -->
+       <dependencies>
            <dependency>
                <groupId>javax.servlet</groupId>
                <artifactId>javax.servlet-api</artifactId>
@@ -82,8 +83,13 @@ File->Settings->搜索File Encoding 修改为UTF-8
    - 在/src/main下添加目录webapp/WEB-INF/jsp,添加indexJsp.jsp页面
    - 在controller中添加requestmapping
    ```java
-    @RequestMapping("/indexJsp")
-    public String getJsp(){
-        return "jsp/indexJsp";
-    }
+   public class WebController {
+       @RequestMapping("/indexJsp")
+       public String getJsp(){
+           return "jsp/indexJsp";
+       }
+   }
    ```
+5.mysql问题   
+    在配置文件application.properties中需要添加时区参数，否则会报错
+    spring.datasource.url=jdbc:mysql://localhost:3306/world?serverTimezone=Asia/Shanghai
