@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Thymeleaf</title>
+</head>
+<style type="text/css">
+    .imgtest{
+        width: 1024px;
+        height: 768px;
+    }
+</style>
+<body>
+    <div id="String">
+        <h2>测试 Thymeleaf String 变量</h2>
+        <p th:text="${userName}">neo</p>
+        <span th:text="'Welcome to our application, ' + ${userName} + '!'"></span>
+        <br/>
+        <span th:text="|Welcome to our application, ${userName}!|"></span>
+    </div>
+    <HR>
+    <div id="if">
+        <h2>测试 Thymeleaf if/unless 语法</h2>
+        <a th:if="${flag == 'yes'}"  th:href="@{http://favorites.ren/}"> home </a>
+        <br/>
+        <a th:unless="${flag != 'no'}" th:href="@{http://www.ityouknow.com/}" >ityouknow</a>
+    </div>
+    <HR>
+    <div id="list">
+        <h2>for 循环</h2>
+        <table>
+            <tr  th:each="user,iterStat : ${users}">
+                <td th:text="${user.name}">neo</td>
+                <td th:text="${user.age}">6</td>
+                <td th:text="${user.pass}">213</td>
+                <td th:text="${iterStat.index}">index</td>
+            </tr>
+        </table>
+    </div>
+    <HR>
+    <div id="urltest">
+        <h2>测试 URL</h2>
+        <a  th:href="@{http://www.ityouknow.com/{type}(type=${type})}">link1</a>
+        <br/>
+        <a th:href="@{https://www.bilibili.com/{pageId}(pageId=${pageId})}">Jojo</a>
+        <br/>
+        <div class="imgtest" th:style="'background:url(' + @{${img}} + ');'">
+        </div>
+    </div>
+    <HR>
+    <div id="eqEl">
+        <h2>EQ 等式 测试</h2>
+        <input th:value="${name}"/>
+        <br/>
+        <input th:value="${age <= 30 ? '年轻':'中年'}"/>
+        <br/>
+        <a th:if="${flag eq 'yes'}"  th:href="@{http://favorites.ren/}"> favorites </a>
+    </div>
+    <HR>
+    <div id="switch">
+        <div th:switch="${sex}">
+            <p th:case="'woman'">她是一个姑娘...</p>
+            <p th:case="'man'">这是一个爷们!</p>
+            <!-- *: case的默认的选项 -->
+            <p th:case="*">未知性别的一个家伙。</p>
+        </div>
+    </div>
+</body>
+</html>

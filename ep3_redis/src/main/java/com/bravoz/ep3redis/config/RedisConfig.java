@@ -17,14 +17,14 @@ import java.lang.reflect.Method;
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
-    public KeyGenerator keyGenerator(){
+    public KeyGenerator keyGenerator() {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(target.getClass().getName());
                 sb.append(method.getName());
-                for (Object obj : params){
+                for (Object obj : params) {
                     sb.append(obj.toString());
                 }
                 System.out.println(sb.toString());
@@ -34,7 +34,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    public RedisTemplate redisTemplate(RedisTemplate redisTemplate){
+    public RedisTemplate redisTemplate(RedisTemplate redisTemplate) {
         RedisSerializer stringSerializer = new StringRedisSerializer();
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         redisTemplate.setKeySerializer(stringSerializer);

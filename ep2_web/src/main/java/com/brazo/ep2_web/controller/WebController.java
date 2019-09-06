@@ -9,13 +9,13 @@ import java.util.Map;
 public class WebController {
 
     @RequestMapping("/index")
-    public String getWeb(Map map){
-        map.put("backval","you even can input thymeleaf..");
+    public String getWeb(Map map) {
+        map.put("backval", "you even can input thymeleaf..");
         return "index";
     }
 
     @RequestMapping("/indexJsp")
-    public String getJsp(){
+    public String getJsp() {
         return "jsp/indexJsp";
     }
 }

@@ -16,27 +16,27 @@ public class CachableController {
      */
 
     @RequestMapping("/getUser")
-    @Cacheable(value="user-key")
-    public User getUser(){
-        User user = new User("aaa",15,"aaa@email.com");
+    @Cacheable(value = "user-key")
+    public User getUser() {
+        User user = new User("aaa", 15, "aaa@email.com");
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
 
         return user;
     }
 
     @RequestMapping("/getUser2")
-    @Cacheable(value="user-key",key = "#id + ''")
-    public User getUser2(int id){
-        User user = new User("bbb",15,"bbb@email.com");
+    @Cacheable(value = "user-key", key = "#id + ''")
+    public User getUser2(int id) {
+        User user = new User("bbb", 15, "bbb@email.com");
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
 
         return user;
     }
 
     @RequestMapping("/getUser3")
-    @Cacheable(value="user-key")
-    public User getUser3(int id){
-        User user = new User("ccc",id,"ccc@email.com");
+    @Cacheable(value = "user-key")
+    public User getUser3(int id) {
+        User user = new User("ccc", id, "ccc@email.com");
         System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
 
         return user;

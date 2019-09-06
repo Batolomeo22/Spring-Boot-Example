@@ -21,8 +21,8 @@ public class JspResolver {
     private int order;
 
     @Bean
-    InternalResourceViewResolver jspViewResolver(){
-        final InternalResourceViewResolver  viewResolver = new InternalResourceViewResolver();
+    InternalResourceViewResolver jspViewResolver() {
+        final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix(prefix);
         viewResolver.setViewNames(viewname);
         viewResolver.setSuffix(suffix);

@@ -19,7 +19,7 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private String stuName;
 
-    @Column(nullable = false ,unique = true)
+    @Column(nullable = false, unique = true)
     private String stuNo;
 
     @Column(nullable = true)

@@ -10,12 +10,12 @@ import java.util.UUID;
 public class SessionController {
 
     @RequestMapping("/uid")
-    public String sessionTest(HttpSession session){
-        UUID uid = (UUID)session.getAttribute("uid");
-        if(uid == null){
+    public String sessionTest(HttpSession session) {
+        UUID uid = (UUID) session.getAttribute("uid");
+        if (uid == null) {
             uid = UUID.randomUUID();
         }
-        session.setAttribute("uid",uid);
+        session.setAttribute("uid", uid);
         return session.getId();
     }
 }

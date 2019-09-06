@@ -31,7 +31,7 @@ public class StudentRepositoryTests {
         //studentRepository.save(new Student("eee","5","eee@edu.com",12,formattedDate));
 
         Assert.assertEquals(3, studentRepository.findAll().size());
-        Assert.assertEquals("ddd",studentRepository.findByStuEmail("ddd@edu.com").getStuName());
+        Assert.assertEquals("ddd", studentRepository.findByStuEmail("ddd@edu.com").getStuName());
         studentRepository.delete(studentRepository.findByStuName("eee"));
     }
 }

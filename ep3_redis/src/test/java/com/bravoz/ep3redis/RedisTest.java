@@ -24,24 +24,24 @@ public class RedisTest {
     private RedisTemplate redisTemplate;
 
     @Test
-    public void test() throws Exception{
-        stringRedisTemplate.opsForValue().set("aaa","1111");
-        Assert.assertEquals("1111",stringRedisTemplate.opsForValue().get("aaa"));
+    public void test() throws Exception {
+        stringRedisTemplate.opsForValue().set("aaa", "1111");
+        Assert.assertEquals("1111", stringRedisTemplate.opsForValue().get("aaa"));
     }
 
     @Test
-    public void testObj() throws Exception{
-        User user = new User("jack",20,"jackloverose@titanic.com");
-        ValueOperations<String,User> operations = redisTemplate.opsForValue();
-        operations.set("xxx",user);
+    public void testObj() throws Exception {
+        User user = new User("jack", 20, "jackloverose@titanic.com");
+        ValueOperations<String, User> operations = redisTemplate.opsForValue();
+        operations.set("xxx", user);
 
-        operations.set("bravoy",user, 1,TimeUnit.SECONDS);//生命周期1秒
+        operations.set("bravoy", user, 1, TimeUnit.SECONDS);//生命周期1秒
         Thread.sleep(1000);
 
         boolean exist = redisTemplate.hasKey("bravoy");
-        if(exist){
+        if (exist) {
             System.out.println("bravoy is alive!");
-        }else{
+        } else {
             System.out.println("bravoy has gone! RIP!");
         }
 

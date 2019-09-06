@@ -24,25 +24,25 @@ import java.util.List;
 public class FilterConfiguration {
 
     @Bean
-    public RemoteIpFilter remoteIpFilter(){
+    public RemoteIpFilter remoteIpFilter() {
         return new RemoteIpFilter();
     }
 
     @Bean
-    public FilterRegistrationBean filterRegistration(){
+    public FilterRegistrationBean filterRegistration() {
 
         FilterRegistrationBean registration = new FilterRegistrationBean();
 
         registration.setFilter(new MyFilter());
         registration.addUrlPatterns("/*");
-        registration.addInitParameter("paramName","paramValue");
+        registration.addInitParameter("paramName", "paramValue");
         registration.setName("MyDefFilter");
         registration.setOrder(1);
 
         return registration;
     }
 
-    public class MyFilter implements Filter{
+    public class MyFilter implements Filter {
 
         @Override
         public void init(FilterConfig filterConfig) throws ServletException {
@@ -53,11 +53,11 @@ public class FilterConfiguration {
         public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterchain) throws IOException, ServletException {
             HttpServletRequest request = (HttpServletRequest) srequest;
 
-            System.out.println("This is my filter:"+request.getRequestURI());
+            System.out.println("This is my filter:" + request.getRequestURI());
 
 
             sresponse.setCharacterEncoding("GBK");
-            filterchain.doFilter(srequest,sresponse);
+            filterchain.doFilter(srequest, sresponse);
         }
 
         @Override

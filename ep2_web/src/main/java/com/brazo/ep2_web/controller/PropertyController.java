@@ -28,8 +28,8 @@ public class PropertyController {
         String descriptionStr = new String(description.getBytes("ISO8859-1"), "UTF-8");
         System.out.println(tilteStr);
         Map map = new HashMap();
-        map.put("title",tilteStr);
-        map.put("description",descriptionStr);
+        map.put("title", tilteStr);
+        map.put("description", descriptionStr);
         return map;
     }
 }

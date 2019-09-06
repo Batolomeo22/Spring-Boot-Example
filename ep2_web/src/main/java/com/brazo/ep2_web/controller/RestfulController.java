@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestfulController {
 
     @RequestMapping("/getUser")
-    public User getUser(){
+    public User getUser() {
         User user = new User();
         user.setUserName("明");
         user.setPassWord("1qaz");

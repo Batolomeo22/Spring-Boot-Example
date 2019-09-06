@@ -11,8 +11,8 @@ import java.util.List;
 public class MyWebMvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
-    public HttpMessageConverter<String> responseBodyConverter(){
-        return  new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    public HttpMessageConverter<String> responseBodyConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 
     @Override

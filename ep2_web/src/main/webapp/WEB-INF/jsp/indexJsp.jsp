@@ -11,7 +11,7 @@
     <title>JSP Test</title>
 </head>
 <body>
-    <h1>This is a jsp page.</h1>
-    <a href="/index">You can click this link to find a thymeleaf page.</a>
+<h1>This is a jsp page.</h1>
+<a href="/index">You can click this link to find a thymeleaf page.</a>
 </body>
 </html>
